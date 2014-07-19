@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  resources :sessions, only: [ :new, :create, :destroy ]
+  get '/sandbox', to: 'root#sandbox' if Rails.env.development?
   resources :users
   root to: "root#home"
   # The priority is based upon order of creation: first created -> highest priority.

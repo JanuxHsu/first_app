@@ -2,6 +2,22 @@
 
 <div class="row">
 	<%= form_for @user do |f| %>
+		<% if @user.errors.any?  %>
+			<div id="error_explanation">
+				<div class="alert alert-error">
+					There are <%= pluralize @user.errors.count, "error" %>
+				</div>
+
+				<ul>
+					<% @user.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+	<% end %>
+	
+	<%= form_for @user do |f| %>
 		<%= f.label :name %></br>
 		<%= f.text_field :name %></br>
 
@@ -9,10 +25,10 @@
 		<%= f.text_field :email %></br>
 
 		<%= f.label :password %></br>
-		<%= f.text_field :password %></br>
+		<%= f.password_field :password %></br>
 		
 		<%= f.label :password_confirmation %></br>
-		<%= f.text_field :password_confirmation %></br></br></br>
+		<%= f.password_field :password_confirmation %></br></br></br>
 		
 		<div>
 			<%= f.submit "Register!", class: "btn btn-primary" %>
